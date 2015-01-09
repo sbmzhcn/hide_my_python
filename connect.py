@@ -66,14 +66,14 @@ def build_post_request(args):
     # We return the request
     return post_request
 
-def send_data(url, data=None, cookies=None, allow_redirects=True):
+def send_data(url, data=None, cookies=None, allow_redirects=True, proxies=None):
     # If we have data, we POST
     if data:
         r = requests.post(url, data=data, cookies=cookies,
-                allow_redirects=allow_redirects)
+                allow_redirects=allow_redirects, proxies=proxies)
     # Otherwise, we GET
     else:
-        r = requests.get(url, cookies=cookies, allow_redirects=allow_redirects)
+        r = requests.get(url, cookies=cookies, allow_redirects=allow_redirects, proxies=proxies)
 
     return r
 
