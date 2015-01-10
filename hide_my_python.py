@@ -42,10 +42,12 @@ def main():
     connection, cursor = database.initialize_database(args.database_file)
 
     try:
+        file_ = open('proxies.txt', 'a', encoding='utf-8')
         # We generate the proxies
         for proxy in parser.generate_proxy(args):
             # And we store them in the database
-            database.insert_in_database(cursor, proxy)
+            database.insert_in_database(cursor, proxy, file_)
+        file_.close()
     except KeyboardInterrupt:
         if args.verbose:
             print('')
